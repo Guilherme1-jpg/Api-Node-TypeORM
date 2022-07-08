@@ -1,5 +1,7 @@
 ### Readme still under construction
 
+## project 65% done
+
 comando uteis para redis cache
 
 start redis
