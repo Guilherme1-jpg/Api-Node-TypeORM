@@ -11,6 +11,7 @@ import AppError from '../errors/AppError'
 import '../typeorm'
 import uploadConfig from '../../config/upload'
 import { pagination } from 'typeorm-pagination'
+import rateLimiter from '../http/middlewares/rateLimiter'
 
 dotenv.config()
 const server = express();
@@ -18,6 +19,8 @@ const server = express();
 server.use(cors());
 server.use('/files', express.static(uploadConfig.directory))
 server.use(express.json());
+
+server.use(rateLimiter)
 server.use(pagination)
 server.use(express.static(path.join(__dirname, '../public')));
 server.use(express.urlencoded({ extended: true }))
